@@ -1,0 +1,366 @@
+{"version":3,"sources":["index.js"],"names":[],"mappings":";;;;;QAKgB,Q,GAAA,Q;AALhB,IAAI,SAAS,gIAAb;AACA;AACA;AACA;AACA;AACO,SAAS,QAAT,CAAkB,KAAlB,EACP;AACC,KAAI,CAAC,KAAL,EACC,OAAO,KAAP;;AAED,KAAG,MAAM,MAAN,GAAa,GAAhB,EACC,OAAO,KAAP;;AAED,KAAI,QAAQ,OAAO,IAAP,CAAY,KAAZ,CAAZ;AACA,KAAG,CAAC,KAAJ,EACC,OAAO,KAAP;;AAED;AACA,KAAI,QAAQ,MAAM,KAAN,CAAY,GAAZ,CAAZ;AACA,KAAG,MAAM,CAAN,EAAS,MAAT,GAAgB,EAAnB,EACC,OAAO,KAAP;;AAED,KAAI,cAAc,MAAM,CAAN,EAAS,KAAT,CAAe,GAAf,CAAlB;AACA,KAAG,YAAY,IAAZ,CAAiB,UAAS,IAAT,EAAe;AAAE,SAAO,KAAK,MAAL,GAAY,EAAnB;AAAwB,EAA1D,CAAH,EACC,OAAO,KAAP;;AAED,QAAO,IAAP;AACA","file":"index.cjs.js","sourcesContent":["var tester = /^[-!#$%&'*+\\/0-9=?A-Z^_a-z{|}~](\\.?[-!#$%&'*+\\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-?\\.?[a-zA-Z0-9])*\\.[a-zA-Z](-?[a-zA-Z0-9])+$/;\r\n// Thanks to:\r\n// http://fightingforalostcause.net/misc/2006/compare-email-regex.php\r\n// http://thedailywtf.com/Articles/Validating_Email_Addresses.aspx\r\n// http://stackoverflow.com/questions/201323/what-is-the-best-regular-expression-for-validating-email-addresses/201378#201378\r\nexport function validate(email)\r\n{\r\n\tif (!email)\r\n\t\treturn false;\r\n\r\n\tif(email.length>254)\r\n\t\treturn false;\r\n\r\n\tvar valid = tester.test(email);\r\n\tif(!valid)\r\n\t\treturn false;\r\n\r\n\t// Further checking of some things regex can't handle\r\n\tvar parts = email.split(\"@\");\r\n\tif(parts[0].length>64)\r\n\t\treturn false;\r\n\r\n\tvar domainParts = parts[1].split(\".\");\r\n\tif(domainParts.some(function(part) { return part.length>63; }))\r\n\t\treturn false;\r\n\r\n\treturn true;\r\n}\r\n"]}
+/**
+ * Validate an email address.
+ * @param {string} email - The email address to validate.
+ * @returns {boolean}
+ */
+export function validate(email: string): boolean;
+
+
+/**
+ * Async email validation.
+ * @param {string} email - The email address to validate.
+ * @param {AsyncCallback} callback - The callback to execute.
+ */
+export function validate_async(email: string, callback: AsyncCallback): void;
+
+
+export interface AsyncCallback {
+    (err: any, isValideEmail: boolean): any;
+}
+
+"use strict";
+
+var tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+// Thanks to:
+// http://fightingforalostcause.net/misc/2006/compare-email-regex.php
+// http://thedailywtf.com/Articles/Validating_Email_Addresses.aspx
+// http://stackoverflow.com/questions/201323/what-is-the-best-regular-expression-for-validating-email-addresses/201378#201378
+exports.validate = function(email)
+{
+	if (!email)
+		return false;
+		
+	if(email.length>254)
+		return false;
+
+	var valid = tester.test(email);
+	if(!valid)
+		return false;
+
+	// Further checking of some things regex can't handle
+	var parts = email.split("@");
+	if(parts[0].length>64)
+		return false;
+
+	var domainParts = parts[1].split(".");
+	if(domainParts.some(function(part) { return part.length>63; }))
+		return false;
+
+	return true;
+}
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <http://unlicense.org>
+{
+  "_from": "email-validator",
+  "_id": "email-validator@2.0.4",
+  "_inBundle": false,
+  "_integrity": "sha512-gYCwo7kh5S3IDyZPLZf6hSS0MnZT8QmJFqYvbqlDZSbwdZlY6QZWxJ4i/6UhITOJ4XzyI647Bm2MXKCLqnJ4nQ==",
+  "_location": "/email-validator",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "tag",
+    "registry": true,
+    "raw": "email-validator",
+    "name": "email-validator",
+    "escapedName": "email-validator",
+    "rawSpec": "",
+    "saveSpec": null,
+    "fetchSpec": "latest"
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "https://registry.npmjs.org/email-validator/-/email-validator-2.0.4.tgz",
+  "_shasum": "b8dfaa5d0dae28f1b03c95881d904d4e40bfe7ed",
+  "_spec": "email-validator",
+  "_where": "C:\\Users\\Pedro Vivaldi\\Desktop\\Prova ClassApp",
+  "author": {
+    "name": "Manish Saraan",
+    "email": "manish021js@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/manishsaraan/email-validator/issues"
+  },
+  "bundleDependencies": false,
+  "contributors": [
+    {
+      "name": "Manish Saraan",
+      "email": "manish021js@gmail.com",
+      "url": "https://github.com/manishsaraan"
+    },
+    {
+      "name": "Brad Martin",
+      "email": "bradwaynemartin@gmail.com",
+      "url": "https://github.com/bradmartin"
+    }
+  ],
+  "deprecated": false,
+  "description": "Provides a fast, pretty robust e-mail validator. Only checks form, not function.",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "5.0.5"
+  },
+  "engines": {
+    "node": ">4.0"
+  },
+  "homepage": "http://github.com/manishsaraan/email-validator",
+  "keywords": [
+    "email",
+    "validation",
+    "validator",
+    "syntax"
+  ],
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "http://github.com/manishsaraan/email-validator/raw/master/LICENSE"
+    }
+  ],
+  "main": "index",
+  "name": "email-validator",
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/manishsaraan/email-validator.git"
+  },
+  "scripts": {
+    "test": "mocha test.js"
+  },
+  "typings": "index.d.ts",
+  "version": "2.0.4"
+}
+
+# email-validator
+A simple module to validate an e-mail address
+
+[![travis build](https://img.shields.io/travis/manishsaraan/email-validator.svg?style=flat-square)](https://travis-ci.org/manishsaraan/email-validator)
+[![version](https://img.shields.io/npm/v/email-validator.svg?style=flat-square)]((http://npm.im/email-validator))
+[![downloads](https://img.shields.io/npm/dm/email-validator.svg?style=flat-square)](https://npm-stat.com/charts.html?package=email-validators&from=2015-08-01)
+[![XO code style](https://img.shields.io/badge/code_style-XO-5ed9c7.svg?style=flat-square)](https://github.com/xojs/xo)
+
+## Installation
+Install via NPM:
+
+```bash
+npm install email-validator
+
+```
+
+## Usage
+
+#### javascript
+
+```javascript
+
+var validator = require("email-validator");
+
+validator.validate("test@email.com"); // true
+
+```
+
+#### TypeScript
+
+```typescript
+
+import * as EmailValidator from 'email-validator';
+
+EmailValidator.validate("test@email.com"); // true
+
+
+```
+
+## Contribute
+
+Contributions welcome! Check the ``LICENSE`` file for more info.
+
+## Meta
+
+* robert@cosmicrealms.com
+* manish021js@gmail.com
+
+Distributed under the unlicense public domain. See ``LICENSE`` for more information.
+
+[https://github.com/manishsaraan/email-validator](https://github.com/manishsaraan/email-validator)
+
+const expect = require('chai').expect;
+const validator = require(".");
+
+const validSupported =
+[
+	"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@letters-in-local.org",
+	"01234567890@numbers-in-local.net",
+	"&'*+-./=?^_{}~@other-valid-characters-in-local.net",
+	"mixed-1234-in-{+^}-local@sld.net",
+	"a@single-character-in-local.org",
+	"one-character-third-level@a.example.com",
+	"single-character-in-sld@x.org",
+	"local@dash-in-sld.com",
+	"letters-in-sld@123.com",
+	"one-letter-sld@x.org",
+	"test@test--1.com",
+	"uncommon-tld@sld.museum",
+	"uncommon-tld@sld.travel",
+	"uncommon-tld@sld.mobi",
+	"country-code-tld@sld.uk",
+	"country-code-tld@sld.rw",
+	"local@sld.newTLD",
+	"the-total-length@of-an-entire-address.cannot-be-longer-than-two-hundred-and-fifty-four-characters.and-this-address-is-254-characters-exactly.so-it-should-be-valid.and-im-going-to-add-some-more-words-here.to-increase-the-lenght-blah-blah-blah-blah-bla.org",
+	"the-character-limit@for-each-part.of-the-domain.is-sixty-three-characters.this-is-exactly-sixty-three-characters-so-it-is-valid-blah-blah.com",
+	"local@sub.domains.com",
+	"backticks`are`legit@test.com",
+	"digit-only-domain@123.com",
+	"digit-only-domain-with-subdomain@sub.123.com"
+];
+
+const validUnsupported =
+[
+	"\"quoted\"@sld.com",
+	"\"\\e\\s\\c\\a\\p\\e\\d\"@sld.com",
+	"\"quoted-at-sign@sld.org\"@sld.com",
+	"\"escaped\\\"quote\"@sld.com",
+	"\"back\\slash\"@sld.com",
+	"punycode-numbers-in-tld@sld.xn--3e0b707e",
+	"bracketed-IP-instead-of-domain@[127.0.0.1]"
+];
+
+const invalidSupported =
+[
+	"@missing-local.org",
+	"! #$%`|@invalid-characters-in-local.org",
+	"(),:;`|@more-invalid-characters-in-local.org",
+	"<>@[]\\`|@even-more-invalid-characters-in-local.org",
+	".local-starts-with-dot@sld.com",
+	"local-ends-with-dot.@sld.com",
+	"two..consecutive-dots@sld.com",
+	"partially.\"quoted\"@sld.com",
+	"the-local-part-is-invalid-if-it-is-longer-than-sixty-four-characters@sld.net",
+	"missing-sld@.com",
+	"sld-starts-with-dashsh@-sld.com",
+	"sld-ends-with-dash@sld-.com",
+	"invalid-characters-in-sld@! \"#$%(),/;<>_[]`|.org",
+	"missing-dot-before-tld@com",
+	"missing-tld@sld.",
+	"invalid",
+	"the-total-length@of-an-entire-address.cannot-be-longer-than-two-hundred-and-fifty-four-characters.and-this-address-is-255-characters-exactly.so-it-should-be-invalid.and-im-going-to-add-some-more-words-here.to-increase-the-lenght-blah-blah-blah-blah-bl.org",
+	"the-character-limit@for-each-part.of-the-domain.is-sixty-three-characters.this-is-exactly-sixty-four-characters-so-it-is-invalid-blah-blah.com",
+	"missing-at-sign.net",
+	"unbracketed-IP@127.0.0.1",
+	"invalid-ip@127.0.0.1.26",
+	"another-invalid-ip@127.0.0.256",
+	"IP-and-port@127.0.0.1:25",
+	"trailing-dots@test.de.",
+	"dot-on-dot-in-domainname@te..st.de",
+	"dot-first-in-domain@.test.de",
+	"mg@ns.i"
+];
+describe('TEST EMAILS AGAINST VALIDATOR', () => {
+	it('Should Be Valid', () => {
+         validSupported.forEach( email => {
+         	expect(validator.validate(email)).to.equal(true);
+         });
+	});
+
+	it('Should Be Invalid', () => {
+         invalidSupported.forEach( email => {
+         	expect(validator.validate(email)).to.equal(false); 
+         });
+	});
+
+	it('Should Be Invalid(UnSupported By Module)', () => {
+         validUnsupported.forEach( email => {
+         	expect(validator.validate(email)).to.equal(false);
+         });
+	});
+});
+
+language: node_js
+cache:
+  directories:
+    - ~/.npm
+notifications:
+  email: false
+script:
+  - npm run test
+node_js:
+  - '9'
+  - '8'
+  - '6'
+  - '4'
+branches:
+  except:
+    - /^v\d+\.\d+\.\d+$/
+## Change Log
+
+### 1.0.5 (2016/08/24)
+- [#12](https://github.com/Sembiance/email-validator/pull/12) Added async support
+
+### 1.0.4 (2016/01/19)
+- [#8](https://github.com/Sembiance/email-validator/issues/8) 1-character top-level domain names no longer pass validation
+
+### 1.0.3 (2015/08/17)
+- [#6](https://github.com/Sembiance/email-validator/pull/6) Add support for digit only domain names
+
+### 1.0.2 (2015/06/30)
+- [#4](https://github.com/Sembiance/email-validator/issues/5) Validator no longer crashes when passed nothing
+
+### 1.0.1 (2014/07/28)
+- [#3](https://github.com/Sembiance/email-validator/pull/3) Add support for backticks in email addresses
+
+### 1.0.0 (2013/12/24)
+- Initial release
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", {
+	value: true
+});
+exports.validate = validate;
+var tester = /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-?\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/;
+// Thanks to:
+// http://fightingforalostcause.net/misc/2006/compare-email-regex.php
+// http://thedailywtf.com/Articles/Validating_Email_Addresses.aspx
+// http://stackoverflow.com/questions/201323/what-is-the-best-regular-expression-for-validating-email-addresses/201378#201378
+function validate(email) {
+	if (!email) return false;
+
+	if (email.length > 254) return false;
+
+	var valid = tester.test(email);
+	if (!valid) return false;
+
+	// Further checking of some things regex can't handle
+	var parts = email.split("@");
+	if (parts[0].length > 64) return false;
+
+	var domainParts = parts[1].split(".");
+	if (domainParts.some(function (part) {
+		return part.length > 63;
+	})) return false;
+
+	return true;
+}
+
+//# sourceMappingURL=index.cjs.js.map
